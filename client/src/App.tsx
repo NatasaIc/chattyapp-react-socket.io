@@ -7,7 +7,7 @@ function App() {
   const socket = io("http://localhost:3000", { autoConnect: false });
 
   useEffect(() => {
-    socket.on("new_user_connected", (username) => {
+    socket.on("new_user_connected_info_to_other_clients", (username) => {
       console.log(username);
     });
   }, []);

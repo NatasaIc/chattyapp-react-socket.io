@@ -19,10 +19,10 @@ io.on("connection", (socket) => {
   console.log("New user connected: ", socket.id);
 
   socket.on("user_connected", (username) => {
-    socket.broadcast.emit("new_user_connected", username);
+
+    // username (användaren) skickas till alla andra clients i rummet (bortsett från användaren) //
+    socket.broadcast.emit("new_user_connected_info_to_other_clients", username);
   });
 });
-
-console.log("hej");
 
 server.listen(3000, () => console.log("Servern körs på localhost: 3000!"));
