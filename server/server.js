@@ -19,7 +19,7 @@ io.on("connection", (socket) => {
   console.log("New user connected: ", socket.id);
 
   socket.on("user_connected", (username) => {
-
+    console.log("User started chat:", username);
     // username (användaren) skickas till alla andra clients i rummet (bortsett från användaren) //
     socket.broadcast.emit("new_user_connected_info_to_other_clients", username);
   });
