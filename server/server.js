@@ -25,11 +25,6 @@ io.on("connection", (socket) => {
     // Skicka användarnamnet till alla andra anslutna klienter (utom den som sände händelsen)
     socket.broadcast.emit("username_clients_only", username);
   });
-
-  // Hantera användarfrånkopplingshändelsen
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
 });
 
 server.listen(3000, () => console.log("Servern körs på localhost: 3000!"));
