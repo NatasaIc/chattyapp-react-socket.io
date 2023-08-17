@@ -7,14 +7,16 @@ function App() {
   const socket = io("http://localhost:3000", { autoConnect: false });
 
   useEffect(() => {
-    socket.on("new_user_connected_info_to_other_clients", (username) => {
-      console.log(username);
+    // Lyssna på händelsen och logga användarnamnet till konsolen när det ansluter en ny användare.
+    socket.on("username_clients_only", (newUsername) => {
+      console.log(newUsername);
     });
   }, []);
 
   const initChat = () => {
     socket.connect();
 
+    // Skicka en användaranslutningshändelse till servern med det aktuella användarnamnet.
     socket.emit("user_connected", username);
   };
 

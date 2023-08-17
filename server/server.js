@@ -15,13 +15,15 @@ app.use(cors());
 
 app.use(express.static("public"));
 
+// Lyssna på händelser för när en klient ansluter till socket.io-servern
 io.on("connection", (socket) => {
   console.log("New user connected: ", socket.id);
 
+  // Lyssna på händelsen "user_connected" från en klient
   socket.on("user_connected", (username) => {
-    console.log("User started chat:", username);
-    // username (användaren) skickas till alla andra clients i rummet (bortsett från användaren) //
-    socket.broadcast.emit("new_user_connected_info_to_other_clients", username);
+    console.log(`${username} connected`);
+    // Skicka användarnamnet till alla andra anslutna klienter (utom den som sände händelsen)
+    socket.broadcast.emit("username_clients_only", username);
   });
 });
 
